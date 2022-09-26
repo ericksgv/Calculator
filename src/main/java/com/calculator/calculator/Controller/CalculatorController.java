@@ -76,7 +76,30 @@ public class CalculatorController {
 
     @FXML
     void clickNumberButton(ActionEvent event) {
+        String number = getButtonValue(event);
+        String textResult = result.getText();
+        if(".".equals(number)){
+            boolean contains = textResult.contains(".");
+            if(contains||isBlank(textResult)){
+                return;
+            }else {
+                result.setText(textResult+".");
+                return;
+            }
+        }
+        result.setText(result.getText()+number);
+    }
 
+    private String getButtonValue(ActionEvent event){
+        Button button = (Button)event.getSource();
+        return button.getText();
+    }
+
+
+    private boolean isBlank(String text){
+        if(text!=null&&text!=""&&text.length()>0)
+            return false;
+        return true;
     }
 
 
